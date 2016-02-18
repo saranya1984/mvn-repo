@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <property name="fmw.app.basedir" value="${soa.app.source}"/>
+  <property name="fmw.composite.name" value="MavenHelloWorld"/>
+  <property name="configplan.target.path" value="D:\Manheim\Deployment_Ant_Maven\BuildScriptMaven_Manheim\BuildScriptMaven/target"/>
+  <ant antfile="D:\Manheim\Deployment_Ant_Maven\BuildScriptMaven_Manheim\BuildScriptMaven/replace-tokens.xml" target="replaceConfig"/>
+  <ant antfile="D:\Manheim\Deployment_Ant_Maven\BuildScriptMaven_Manheim\BuildScriptMaven/ant-git.xml" target="git-version"/>
+</target>
+</project>
