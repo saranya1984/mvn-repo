@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>OVCApp</groupId>
   <artifactId>OVCApp</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.3</version>
   <packaging>pom</packaging>
  
   <scm>
@@ -11,6 +11,7 @@
     <url>http://github.ove.local/ovc-soa/ovc-maven-workspace.git</url>
     <developerConnection>scm:git:http://github.ove.local/ovc-soa/ovc-maven-workspace.git</developerConnection>
   
+    <tag>v.1.3</tag>
   </scm>
   <build>
     <plugins>
@@ -30,6 +31,108 @@
             <version>1.8.1</version>
           </dependency>
         </dependencies>
+      </plugin>
+	    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8.1</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.7</version>
+        <configuration>
+          <description>Official ${project.name} build of the ${project.version} release</description>
+          <message>Official ${project.name} build</message>
+          <server>github.ove.local</server>
+          <repositoryName>ovc-maven-workspace</repositoryName>
+          <repositoryOwner>sshanmugha</repositoryOwner>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>site</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>downloads-maven-plugin</artifactId>
+        <version>0.6</version>
+        <configuration>
+          <description>${project.version} release of ${project.name}</description>
+          <override>true</override>
+          <includeAttached>true</includeAttached>
+          <server>github.ove.local</server>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>upload</goal>
+            </goals>
+            <phase>deploy</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          <reportPlugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.5</version>
+              <reportSets>
+                <reportSet>
+                  <reports>
+                    <report>dependencies</report>
+                    <report>project-team</report>
+                    <report>mailing-list</report>
+                    <report>cim</report>
+                    <report>issue-tracking</report>
+                    <report>license</report>
+                    <report>scm</report>
+                  </reports>
+                </reportSet>
+              </reportSets>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <version>2.7</version>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-report-plugin</artifactId>
+              <version>2.6</version>
+            </plugin>
+          </reportPlugins>
+        </configuration>
       </plugin>
       
     </plugins>
